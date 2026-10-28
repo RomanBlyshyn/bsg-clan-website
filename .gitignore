@@ -19,3 +19,6 @@ desktop.ini
 
 # Службові файли Playwright
 .playwright-mcp/
+
+# Порожній службовий файл
+py.json
