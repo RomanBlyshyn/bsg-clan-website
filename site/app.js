@@ -359,7 +359,10 @@ function renderArtists() {
 // ---------- Студія ----------
 function renderStudio() {
   const s = SITE.studio;
-  document.getElementById("studio-title").textContent = s.name ? `${ui("sec.studio")} ${s.name}` : ui("sec.studio");
+  const word = ui("sec.studio");
+  // "Studio Kush 37" уже містить слово "Studio" (en/pl) — не дублюємо
+  const named = s.name && s.name.toLowerCase().startsWith(word.toLowerCase()) ? s.name : `${word} ${s.name}`;
+  document.getElementById("studio-title").textContent = s.name ? named : word;
   document.getElementById("studio-text").textContent = tr(s.text);
   document.getElementById("studio-services").innerHTML = (tr(s.services) || []).map(x => `<li>${esc(x)}</li>`).join("");
   document.getElementById("studio-address").textContent = s.address ? `📍 ${tr(s.address)}` : "";

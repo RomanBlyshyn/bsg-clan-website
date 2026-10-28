@@ -118,7 +118,8 @@ h2, h3, h4 { font-family: "Oswald", sans-serif; line-height: 1.15; text-transfor
 .ticker-track span::after { content: "✦"; margin-left: 32px; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
-body { overflow-x: hidden; }
+/* нахилена стрічка ширша за екран; clip (не hidden) не ламає sticky-шапку */
+html, body { overflow-x: clip; }
 
 .hero-logo {
   font-family: "Bebas Neue", sans-serif; font-weight: 400;
