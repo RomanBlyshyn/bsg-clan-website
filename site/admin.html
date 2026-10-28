@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Адмінка · B.S.G.REC. Clan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+  <header class="nav">
+    <a href="index.html" class="logo"><span>B<i>.</i>S<i>.</i>G<i>.</i>REC<i>.</i></span><span class="logo-tag">ADMIN</span></a>
+    <div id="who" class="who" hidden>
+      <span id="who-email" class="muted"></span>
+      <span id="who-role" class="role-chip"></span>
+      <button type="button" id="logout" class="btn btn-ghost btn-sm">Вийти</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <!-- База ще не підключена -->
+    <section id="setup" class="panel" hidden>
+      <h2>Адмінка ще не підключена</h2>
+      <p class="muted">Заповни <code>config.js</code> даними з Supabase (Project URL і anon key) і онови сторінку. Покрокова інструкція — у файлі <code>АДМІНКА.md</code>.</p>
+    </section>
+
+    <!-- Вхід / реєстрація -->
+    <section id="auth" class="panel auth" hidden>
+      <h2 id="auth-title">Вхід</h2>
+      <form id="auth-form" class="apply-form">
+        <label>Пошта<input type="email" name="email" required autocomplete="email"></label>
+        <label>Пароль<input type="password" name="password" required minlength="8" autocomplete="current-password"></label>
+        <button type="submit" class="btn btn-primary" id="auth-submit">Увійти</button>
+        <p id="auth-status" class="form-status" role="status"></p>
+      </form>
+      <p class="muted auth-switch">
+        <span id="auth-switch-text">Ще нема акаунта?</span>
+        <button type="button" id="auth-switch" class="linkish">Зареєструватися</button>
+      </p>
+    </section>
+
+    <!-- Зареєстрований, але без доступу -->
+    <section id="pending" class="panel" hidden>
+      <h2>Доступу ще нема</h2>
+      <p class="muted">Акаунт створено. Попроси власника сайту видати тобі права адміна, а потім онови цю сторінку.</p>
+    </section>
+
+    <!-- Сама адмінка -->
+    <section id="app" hidden>
+      <nav class="tabs" role="tablist">
+        <button type="button" data-tab="apps" role="tab">Заявки <span id="apps-badge" class="badge-count" hidden></span></button>
+        <button type="button" data-tab="content" role="tab">Контент</button>
+        <button type="button" data-tab="users" role="tab" id="tab-users-btn" hidden>Користувачі</button>
+      </nav>
+
+      <div id="tab-apps" class="tab" hidden>
+        <div class="tab-head">
+          <h2>Заявки на виступ</h2>
+          <label class="check"><input type="checkbox" id="apps-only-new"> тільки нові</label>
+        </div>
+        <div id="apps-list" class="apps-list"></div>
+      </div>
+
+      <div id="tab-content" class="tab" hidden>
+        <div class="tab-head">
+          <h2>Контент сайту</h2>
+          <span id="content-info" class="muted"></span>
+        </div>
+        <div id="editor" class="editor"></div>
+        <div class="savebar">
+          <span id="save-status" class="muted"></span>
+          <button type="button" id="revert" class="btn btn-ghost btn-sm">Скасувати зміни</button>
+          <button type="button" id="save" class="btn btn-primary btn-sm">Зберегти</button>
+        </div>
+      </div>
+
+      <div id="tab-users" class="tab" hidden>
+        <div class="tab-head">
+          <h2>Користувачі</h2>
+          <span class="muted">Хто зареєструвався в адмінці. Адміни редагують сайт і бачать заявки.</span>
+        </div>
+        <div id="users-list" class="users-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

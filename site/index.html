@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>B.S.G.REC. Clan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="edge edge-l" aria-hidden="true"><span>B.S.G.REC. CLAN ✦ WROCŁAW ✦ BIG SHAARK GANG</span></div>
+  <div class="edge edge-r" aria-hidden="true"><span>STUDIO KUSH 37 ✦ HIP HOP ✦ NIGHT CYPHER</span></div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a href="#top" class="logo" data-logo></a>
+    <nav>
+      <a href="#announcement" data-i18n="nav.next"></a>
+      <a href="#concerts" data-i18n="nav.concerts"></a>
+      <a href="#artists" data-i18n="nav.artists"></a>
+      <a href="#studio" data-i18n="nav.studio"></a>
+    </nav>
+    <div class="lang-switch" id="lang-switch" role="group" aria-label="Language"></div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="hero">
+      <h1 class="hero-logo" data-logo></h1>
+      <p class="tagline" id="tagline"></p>
+      <div class="hero-actions">
+        <a id="listen-btn" class="btn btn-primary" target="_blank" rel="noopener" data-i18n="hero.listen" hidden></a>
+        <a href="#announcement" class="btn btn-ghost" data-i18n="hero.perform"></a>
+      </div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+    <section id="announcement" class="announce" hidden>
+      <div class="announce-media poster-stage" id="announce-media"></div>
+      <div class="announce-body">
+        <div id="announce-info" class="announce-info"></div>
+        <div class="perform">
+          <h4 id="perform-title"></h4>
+          <p id="perform-text" class="muted"></p>
+
+          <!-- Заявки йдуть у базу Supabase, їх видно в адмінці (admin.html → Заявки) -->
+          <form id="apply-form" class="apply-form">
+            <p hidden><label>Bot: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <label><span data-i18n="form.name"></span><input name="name" required maxlength="100"></label>
+            <label><span data-i18n="form.contact"></span><input name="contact" required maxlength="150" data-i18n-ph="form.contactPh"></label>
+            <label><span data-i18n="form.tracks"></span><input name="tracks" required maxlength="500" data-i18n-ph="form.tracksPh"></label>
+            <label><span data-i18n="form.about"></span><textarea name="about" rows="3" maxlength="1500" data-i18n-ph="form.aboutPh"></textarea></label>
+            <input type="hidden" name="lang" id="form-lang">
+            <button type="submit" class="btn btn-primary" data-i18n="form.submit"></button>
+            <p id="apply-status" class="form-status" role="status"></p>
+          </form>
+
+          <div class="alt-contact">
+            <span class="muted" data-i18n="contact.alt"></span>
+            <div class="contact-row" data-contacts="contact.write"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="concerts" class="section">
+      <h2 data-i18n="sec.concerts"></h2>
+      <p id="concerts-sub" class="section-sub"></p>
+      <div id="concerts-upcoming" class="grid"></div>
+      <h3 id="concerts-past-title" class="sub-title" data-i18n="concerts.history" hidden></h3>
+      <div id="concerts-past" class="grid"></div>
+    </section>
+
+    <section id="artists" class="section">
+      <h2 data-i18n="sec.artists"></h2>
+      <div id="artists-list" class="grid artists-grid"></div>
+    </section>
+
+    <section id="studio" class="section">
+      <h2 id="studio-title"></h2>
+      <div class="studio">
+        <div>
+          <p id="studio-text" class="lead"></p>
+          <ul id="studio-services" class="services"></ul>
+          <p id="studio-address" class="muted"></p>
+          <div id="studio-works-wrap" hidden>
+            <h4 class="works-title" data-i18n="studio.works"></h4>
+            <div id="studio-works" class="links"></div>
+          </div>
+          <div class="contact-row" data-contacts="contact.studio" data-source="studio"></div>
+        </div>
+        <div id="studio-photos" class="studio-photos"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="concert-modal" class="modal">
+    <button class="modal-close" data-close data-i18n-aria="modal.close">✕</button>
+    <div id="modal-content"></div>
+  </dialog>
+
+  <footer class="footer">
+    <span class="logo" data-logo></span>
+    <div id="footer-links"></div>
+    <div id="footer-credit" class="footer-credit"></div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="i18n.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
